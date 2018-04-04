@@ -5,6 +5,10 @@ import java.util.Set;
 import java.util.TreeSet;
 /**
  *  Prueba realizada para Fon
+ *  
+ *  text is a huge String, with numbers in the middle. You have to take all those numbers and  order them ascendantly without repetitions
+ *  
+ *  Example: getNumbers("A56B455VB23GTY23J") ==[23, 45, 56]
  * @author FRANCISCO
  *
  */
