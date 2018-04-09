@@ -1,0 +1,86 @@
+diseño de patrones java
+	-Delegar (subclass) "es un" vs "tiene un"
+	-Factoria
+	
+	Por ejemplo en vez hacer una subclase NameAndAddress  para hacer  un Supplier y un Customer (Subclass)
+	Supplier y Customer tendrían instancias de NameAndAddress (delegación)
+
+	Alternativa: AOP (Aspect-oriented programming) https://es.wikipedia.org/wiki/Programaci%C3%B3n_orientada_a_aspectos
+	
+	
+Diseño de patrones:
+	Command
+	Decorator
+	Factory Method
+	Iterator
+	Moder-View-Controller
+	Proxy
+	Singleton
+
+TIP: Gran parte de los diseños de patrones están implementados en la API estandar!
+
+Problemas:
+
+P1: Comparar objetos de mi clase y usarlos de forma efectiva en maps y collections
+S1: Solucion (reescribir equals y hashCode)
+
+
+P2: Clonar objetos
+S2: No utilizar clone, crear una función que copie manualmente.
+
+
+P3: Hacer operaciones de limpieza cuando tu aplicación se apaga
+S2: Utilizar shutdown hook, por ejemplo en java.lang.runtime está el metodo addShutdownHook()
+	Runtime.getRuntime().addShutdownHook(new Thread(){ 
+							public void run (){System.out.println("Running Shutdown Hook");
+							}
+						});
+
+P4: necesitas escribir una clase privada o una clase que sea usada solamente en una clase. (Pag 250 Java Cookbook)
+S4: Utilizar una clase no publica o una inner class. 
+TODO:(Expandir esto con el libro pocket java que lo resumía)
+
+P5: Se requiere proveer de un callback. es decir, en tu clase permites inyectar codigo en los puntos que consideres
+S5: 1º Utilizar interfaces
+
+
+P6: Quieres que cada diferente subclase de su propia versión de uno o más métodos.
+S6: Hacer el método del padre abstracto -> por lo tanto se define el padre abstracto, 
+se puede crear una lista de objetos del padre y al llamar a este método,
+ cada hijo llamara a una implementación diferente
+
+P7: Necesitas pasar un número como un int a una rutina y que se obtenga la versión actualizada de la rutina y
+    no se el return value. Por ejemplo una funcion necesita devolver un boolean 
+	pero ademas necesita incrementar un array de ints
+S7: Utilizar una clase especialzada llamada MutableInteger
+
+P8: Necesitas utilizar una lista pequeña de discretos valores dentro de un programa.
+S8: Utilizar  un enumerado
+
+P9: Única instancia de una clase en la JVM.
+S9: Implementar patrón de diseño singleton.
+
+	--List, Map o Set tienene singletonList(), singletonMap() y SingletonSet()
+	
+P10: Utilizar excepciones personalizadas .
+S10: subclass Exception o RuntimeException.
+
+P11: evitar excesivo acoplamiento entre clases y evitar excesivo 
+	 codigo dedicado en la creación o busqueda de objetos.
+P12: Utilizar un framework the inyección de dependencias.
+		1- Spring. 
+		2- Java Enterprise Edition's context and depency Injection (CDI).
+		3- Google Guice.
+
+
+
+
+ 
+ subclass, abstract o interface.
+ 
+ abstract: cuando parte del codigo es compartido (se define en la clase abstracta) y el resto es abstracto.
+ Subclass: extender una clase y añadir nueva funcionalidad, indenpendientemente si el padre es abstracto o una clase.
+           --Algunas APi como servlets requieren del uso de subclases para utilizarse.
+Interaces:  No existe un padre común y hay un conjunto de clases que van a tener la funcionalidad deseada.
+		   --Se usan como marcadores de ciertas propiedades, como por ejemplo decir que es Serializable.
+ 
